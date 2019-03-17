@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="iMotionsTask.Components.ToolBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iMotionsTask.Components"
+             mc:Ignorable="d" 
+             Height="42" Width="150">
+    <UserControl.DataContext>
+        <local:ToolBarViewModel />
+    </UserControl.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding LoadImageCommand}"
+                Margin="4,2,4,2" 
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                ToolTip="Load Image">
+            <Image Width="32" Height="32">
+                <Image.Source>
+                    <BitmapImage UriSource="/Resources/picture_import.png" />
+                </Image.Source>
+            </Image>
+        </Button>
+        <Button Command="{Binding LoadDataCommand}"
+                Margin="4,2,4,2" 
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                ToolTip="Load raw data file">
+            <Image Width="32" Height="32">
+                <Image.Source>
+                    <BitmapImage UriSource="/Resources/doc_import.png" />
+                </Image.Source>
+            </Image>
+        </Button>
+    </StackPanel>
+</UserControl>

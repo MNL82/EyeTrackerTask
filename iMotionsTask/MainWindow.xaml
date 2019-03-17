@@ -1,0 +1,22 @@
+﻿<Window xmlns:Components="clr-namespace:iMotionsTask.Components"  x:Class="iMotionsTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iMotionsTask"
+        mc:Ignorable="d"
+        Title="iMotion Task" Height="1000" Width="1400">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Components:ToolBarView Grid.Row="0" HorizontalAlignment="Left"/>
+        <Components:EyeTrackingCanvasView Grid.Row="1"/>
+        <Components:PlaybackProgressView Grid.Row="2"/>
+        <Components:PlaybackActionsView Grid.Row="3"/>
+    </Grid>
+</Window>

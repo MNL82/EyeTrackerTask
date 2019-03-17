@@ -1,0 +1,55 @@
+﻿<UserControl xmlns:Components="clr-namespace:iMotionsTask.Components" x:Class="iMotionsTask.Components.EyeTrackingCanvasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iMotionsTask.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:EyeTrackingCanvasViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:PointArrayToPointCollection x:Key="pointsToPointCollection"/>
+    </UserControl.Resources>
+    <Border Background="Black">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="DrawingCanvas" Height="{Binding BackgroundImage.Height, Mode=OneWay}" Width="{Binding BackgroundImage.Width, Mode=OneWay}">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="{Binding BackgroundImage.FilePath}"/>
+                </Canvas.Background>
+                <Ellipse
+                    Width="20"
+                    Height="20"
+                    Fill="Green"
+                    Canvas.Left="{Binding LeftPoint.X}"
+                    Canvas.Top="{Binding LeftPoint.Y}" 
+                    Visibility="{Binding LeftPoint.V}"/>
+                <Ellipse
+                    Width="20"
+                    Height="20"
+                    Fill="Green"
+                    Canvas.Left="{Binding RightPoint.X}"
+                    Canvas.Top="{Binding RightPoint.Y}" 
+                    Visibility="{Binding RightPoint.V}"/>
+                <Path Stroke="Orange" StrokeThickness="3">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathGeometry.Figures>
+                                <PathFigureCollection>
+                                    <PathFigure StartPoint="{Binding FirstPoint}">
+                                        <PathFigure.Segments>
+                                            <PathSegmentCollection>
+                                                <PolyLineSegment Points="{Binding Points, Converter={StaticResource pointsToPointCollection}}"/>
+                                            </PathSegmentCollection>
+                                        </PathFigure.Segments>
+                                    </PathFigure>
+                                </PathFigureCollection>
+                            </PathGeometry.Figures>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+</UserControl>
